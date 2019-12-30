@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>记一个ie下特有的代码情况</title>
+    <link href="undefined2019/12/30/iedebugrun/"/>
+    <url>2019/12/30/iedebugrun/</url>
+    
+    <content type="html"><![CDATA[<h1 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h1><p>起因是接到了一个bug，说是代码在ie下运行，无法正常运行。当时想了一下，那不是理所当然的嘛，没有接babel-polyfill，所以打不开是正常的一踏糊涂，代码里还有不少Promise相关的代码。</p><h3 id="结果出现了反转，他们说打开了f12（控制台）以后，跟我说界面可以正常加载出来了。"><a href="#结果出现了反转，他们说打开了f12（控制台）以后，跟我说界面可以正常加载出来了。" class="headerlink" title="结果出现了反转，他们说打开了f12（控制台）以后，跟我说界面可以正常加载出来了。"></a>结果出现了反转，他们说打开了f12（控制台）以后，跟我说界面可以正常加载出来了。</h3><p>我当时就？？？？？？？了</p><p><img src="https://blog-1256223865.cos.ap-shanghai.myqcloud.com/blog/common/yimengbi.jpeg" srcset="/img/loading.gif" alt="一懵逼"></p><p>然后我喊上了我的同事，一起来围观ie11下的神秘问题。</p><p>然后他表示</p><blockquote><p>这是我工作以来碰到的最神秘的bug</p></blockquote><p><img src="https://blog-1256223865.cos.ap-shanghai.myqcloud.com/blog/common/mengbi.jpeg" srcset="/img/loading.gif" alt="对懵逼"></p><p>好了，这下懵逼的人又多了一个</p><h1 id="调查"><a href="#调查" class="headerlink" title="调查"></a>调查</h1><p>既然出现了这么有趣的问题，那怎么可以放过它呢。。</p><p>通过在google上搜索关键字 ie11 不开 调试器 查到了一个很相似的网页内容</p><p><img src="https://blog-1256223865.cos.ap-shanghai.myqcloud.com/blog/common/thinbug.jpg" srcset="/img/loading.gif" alt="ie11不开调试器无法打开"></p><p>救星啊！！曙光啊！！女神啊！！</p><p>然后点了进去</p><p><img src="https://blog-1256223865.cos.ap-shanghai.myqcloud.com/blog/common/502.jpg" srcset="/img/loading.gif" alt="女神不见啦"></p><p>女神他门坏啦！！！女神他穿上了坦克装甲！！！</p><p>不过幸好的是，我们找到了关键字，所以我们继续按照这个页面的关键字进行检索，他已经给出了大方向</p><p>我们将关键字修改为 </p><blockquote><p>ie11 调试器 除非启动</p></blockquote><p>果不其然，正确答案出现了(按F进入坦克)</p><h1 id="正确答案"><a href="#正确答案" class="headerlink" title="正确答案"></a>正确答案</h1><blockquote><p><a href="https://xbuba.com/questions/44036862" target="_blank" rel="noopener">https://xbuba.com/questions/44036862</a></p></blockquote><p>在这篇文章中，将这个问题的关键描绘了出来</p><blockquote><p>脚本错误仅在以下情况下才会执行：1.打开浏览器调试工具。和2.已打开开发人员工具的“异常中断”的“调试”选项卡设置。</p></blockquote><p>这个词点醒了我，通过在ie11的调试菜单栏中，果不其然发现了一个调试选项是修改ie11是否碰到异常后进行中断的</p><p>这个选项，在不打开调试控制台(F12)的默认对情况下是会进行中断的，所以我们看到的ie11上页面为无法渲染，但是在打开调试控制台后，它的选项就会修改为异常后不进行中断</p><p>而代码中，因为业务代码对异常进行了捕获，但是在最后没有进行抛出，所以形成了这次无法理解的bug</p><p>通过将其设置为异常时中断，原始问题脱下了它的坦克装甲</p><blockquote><p>Promise.resolve 无法对null使用resolve方法</p></blockquote><p>归根到底还是未引入Promise导致的问题。。绕了好大一个圈，最后的解决办法竟然上莽上去就好了。。。</p><h3 id="最后，通过引入babel-polyfill的办法，彻底解决了这个问题，顺便给ie做了个全套大保健的兼容"><a href="#最后，通过引入babel-polyfill的办法，彻底解决了这个问题，顺便给ie做了个全套大保健的兼容" class="headerlink" title="最后，通过引入babel-polyfill的办法，彻底解决了这个问题，顺便给ie做了个全套大保健的兼容"></a>最后，通过引入babel-polyfill的办法，彻底解决了这个问题，顺便给ie做了个全套大保健的兼容</h3><h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>写了这么多，写着写着就写成了如何正确使用搜索引擎来解决bug。。。不过我觉得这个确实相对于单纯的解决问题更重要，毕竟大部分的别人的问题，到了我这里，我也只是换了个姿势进行了搜索而已。。</p><p>授人以鱼不如授人以渔，大家好好学习百度的一百种姿势呀</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>前端</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>regex零宽断言</title>
     <link href="undefined2019/12/12/regex/"/>
     <url>2019/12/12/regex/</url>
