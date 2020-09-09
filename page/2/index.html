@@ -16,7 +16,7 @@
   <meta name="description" content="">
   <meta name="author" content="flyguolai">
   <meta name="keywords" content="">
-  <title>归档 ~ 大树洞</title>
+  <title>大树洞</title>
 
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
 <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
@@ -52,7 +52,7 @@
 
 
 <body>
-  <header style="height: 80vh;">
+  <header style="height: 100vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -126,6 +126,10 @@
           </div>
 
           
+            <div class="scroll-down-bar">
+              <i class="fas fa-angle-down scroll-down-arrow"></i>
+            </div>
+          
         </div>
       </div>
     </div>
@@ -141,56 +145,53 @@
               <div class="col-12 col-md-10 m-auto">
                 
 
-<div class="list-group">
-  <p class="h4">共计 11 篇文章</p>
-  <hr>
-  
+
+  <div class="row mb-4 mx-auto">
     
-      
-      <p class="h5">2019</p>
     
-    <a href="/2019/12/30/iedebugrun/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">记一个ie下特有的代码情况</span>
-      <span style="float: right;">12-30</span>
-    </a>
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/11/19/hexo/">
+        <p class="h4 index-header">使用hexo与git page快速创建一个属于你自己的博客系统</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">其实很久之前就想弄一个自己的博客系统用来记录自己coding过程中碰到的那么多坑，可惜拖延症晚期，迟迟没有付诸行动
+2019年双11弄了台百度云的机器（虽然最后没用上），又起了歹念，一通搜索，在v2ex上发现大家都说搭博客hexo就够了，于是就开始了折腾
+hexohexo 本质上是一个快速搭建博客的脚手架，其最大用处是快速搭建一个博客模版，内容使用markdown进行书写，然后通过一系列的命令可以直接转换为html文本，最后直接部署到站点上。
+从创建到发布拥有一套相对完善的工具链
+安装前提安装 Hexo 相当简单，只需要先安装下列应用程序即可：
+Node.js (Node.js 版本需不低于 8.6，建议使用 Node.js 10.0 及以上版本)Git如果您的电脑中已经安装上述必备程序，那么恭喜您！你可以直接前往 安装 Hexo 步骤。
+由于偷懒，下面的教程一般都是指向的外域的教程，以后再写详细点（希望会记得。。）
+安装Node.js在大部分的情况下，无条件推荐使用nvm进行node.js的安装而不是直接安装node.js(最大的好处就是可以动态的切换依赖而非每次都去安装不通版本的n</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-11-19&nbsp;&nbsp;
+        
+        
+        
+      </div>
+    </div>
+  </div>
+
+
+
+  <nav aria-label="index posts navigation">
+    <span class="pagination pg-blue justify-content-center mt-5" id="pagination">
+      <a class="extend prev" rel="prev" href="/"><i class="fas fa-angle-double-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    </span>
+  </nav>
   
-    
-    <a href="/2019/12/12/regex/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">regex零宽断言</span>
-      <span style="float: right;">12-12</span>
-    </a>
-  
-    
-    <a href="/2019/11/28/mvvm/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">前端分层结构（mvc-&gt;mvvm）的前世今生</span>
-      <span style="float: right;">11-28</span>
-    </a>
-  
-    
-    <a href="/2019/11/25/app-cross-platform/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">[转载]跨平台開發的一些姿勢</span>
-      <span style="float: right;">11-25</span>
-    </a>
-  
-    
-    <a href="/2019/11/25/css-position/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">css-position</span>
-      <span style="float: right;">11-25</span>
-    </a>
-  
-    
-    <a href="/2019/11/19/androidScreen/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">安卓获取屏幕以及获得像素点</span>
-      <span style="float: right;">11-19</span>
-    </a>
-  
-    
-    <a href="/2019/11/19/hexo/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">使用hexo与git page快速创建一个属于你自己的博客系统</span>
-      <span style="float: right;">11-19</span>
-    </a>
-  
-</div>
+  <script>
+    for (ele of document.getElementById("pagination").getElementsByClassName("page-number")) {
+      ele.href += '#board';
+    }
+  </script>
+
 
 
               </div>
@@ -312,7 +313,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "归档&nbsp;",
+        "Deep Dark Fantasy&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

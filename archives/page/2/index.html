@@ -149,48 +149,24 @@
       
       <p class="h5">2019</p>
     
-    <a href="/2019/12/30/iedebugrun/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">记一个ie下特有的代码情况</span>
-      <span style="float: right;">12-30</span>
-    </a>
-  
-    
-    <a href="/2019/12/12/regex/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">regex零宽断言</span>
-      <span style="float: right;">12-12</span>
-    </a>
-  
-    
-    <a href="/2019/11/28/mvvm/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">前端分层结构（mvc-&gt;mvvm）的前世今生</span>
-      <span style="float: right;">11-28</span>
-    </a>
-  
-    
-    <a href="/2019/11/25/app-cross-platform/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">[转载]跨平台開發的一些姿勢</span>
-      <span style="float: right;">11-25</span>
-    </a>
-  
-    
-    <a href="/2019/11/25/css-position/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">css-position</span>
-      <span style="float: right;">11-25</span>
-    </a>
-  
-    
-    <a href="/2019/11/19/androidScreen/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">安卓获取屏幕以及获得像素点</span>
-      <span style="float: right;">11-19</span>
-    </a>
-  
-    
     <a href="/2019/11/19/hexo/" class="list-group-item list-group-item-action">
       <span class="archive-post-title">使用hexo与git page快速创建一个属于你自己的博客系统</span>
       <span style="float: right;">11-19</span>
     </a>
   
 </div>
+
+  <nav aria-label="index posts navigation">
+    <span class="pagination pg-blue justify-content-center mt-5" id="pagination">
+      <a class="extend prev" rel="prev" href="/archives/"><i class="fas fa-angle-double-left"></i></a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span>
+    </span>
+  </nav>
+  
+  <script>
+    for (ele of document.getElementById("pagination").getElementsByClassName("page-number")) {
+      ele.href += '#board';
+    }
+  </script>
 
 
               </div>

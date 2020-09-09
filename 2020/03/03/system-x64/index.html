@@ -16,7 +16,7 @@
   <meta name="description" content="">
   <meta name="author" content="flyguolai">
   <meta name="keywords" content="">
-  <title>归档 ~ 大树洞</title>
+  <title>《一个64操作系统的设计与实现》阅读笔记（一） ~ 大树洞</title>
 
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
 <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
@@ -52,7 +52,7 @@
 
 
 <body>
-  <header style="height: 80vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -123,6 +123,41 @@
             </span>
 
             
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  星期二, 三月 3日 2020, 12:25 凌晨
+                </p>
+              
+
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    658 字
+                  </span>&nbsp;
+                
+
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      3 分钟
+                  </span>&nbsp;
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
+            
           </div>
 
           
@@ -133,71 +168,130 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5 z-depth-3" id="board">
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">共计 11 篇文章</p>
-  <hr>
-  
-    
       
-      <p class="h5">2019</p>
-    
-    <a href="/2019/12/30/iedebugrun/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">记一个ie下特有的代码情况</span>
-      <span style="float: right;">12-30</span>
-    </a>
-  
-    
-    <a href="/2019/12/12/regex/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">regex零宽断言</span>
-      <span style="float: right;">12-12</span>
-    </a>
-  
-    
-    <a href="/2019/11/28/mvvm/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">前端分层结构（mvc-&gt;mvvm）的前世今生</span>
-      <span style="float: right;">11-28</span>
-    </a>
-  
-    
-    <a href="/2019/11/25/app-cross-platform/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">[转载]跨平台開發的一些姿勢</span>
-      <span style="float: right;">11-25</span>
-    </a>
-  
-    
-    <a href="/2019/11/25/css-position/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">css-position</span>
-      <span style="float: right;">11-25</span>
-    </a>
-  
-    
-    <a href="/2019/11/19/androidScreen/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">安卓获取屏幕以及获得像素点</span>
-      <span style="float: right;">11-19</span>
-    </a>
-  
-    
-    <a href="/2019/11/19/hexo/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">使用hexo与git page快速创建一个属于你自己的博客系统</span>
-      <span style="float: right;">11-19</span>
-    </a>
-  
-</div>
 
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <h1 id="第二章"><a href="#第二章" class="headerlink" title="第二章"></a>第二章</h1><h2 id="2019-03-02"><a href="#2019-03-02" class="headerlink" title="2019/03/02"></a>2019/03/02</h2><p>bochs是真的让人摸不着头脑。。按照书中的</p>
+<blockquote>
+<p>./configure –with-x11 –with-wx –enable-debugger –enable-disasm –enable-all-optimizations –enable-readline –enable-long-phy-address –enable-x86-64 –enable-smp –enable-cpu-level=6 –enable-large-ramfile –enable-ltdl-install –enable-idle-hack –enable-plugins –enable-a20-pin –enable-repeat-speedups –enable-fast-function-calls –enable-handlers-chaining –enable-trace-linking –enable-configurable-msrs –enable-show-ips –enable-cpp –enable-debugger-gui –enable-iodebug –enable-logging –enable-assert-checks –enable-fpu –enable-vmx=2 –enable-svm –enable-3dnow –enable-alignment-check –enable-monitor-mwait –enable-avx –enable-evex –enable-x86-debugger –enable-pci –enable-usb –enable-voodoo</p>
+</blockquote>
+<p>进行了配置以后，使用make install 进行编译的时候失败了，报了一个</p>
+<pre><code class="bash">make[1]: Entering directory `/home/xuxin/study/bochs/iodev/usb&#39;
+make[1]: `libusb.a&#39; is up to date.
+make[1]: Leaving directory `/home/xuxin/study/bochs/iodev/usb&#39;
+echo done
+done
+cd bx_debug &amp;&amp; \
+    make  libdebug.a
+make[1]: Entering directory `/home/xuxin/study/bochs/bx_debug&#39;
+g++ -c -I.. -I./.. -I../instrument/stubs -I./../instrument/stubs -I. -I./. -g -O2 -D_FILE_OFFSET_BITS=64 -D_LARGE_FILES -pthread   dbg_main.cpp -o dbg_main.o
+In file included from ../cpu/cpu.h:648,
+                 from dbg_main.cpp:28:
+../cpu/icache.h:31: error: ISO C++ forbids initialization of member ‘PHY_MEM_PAGES’
+../cpu/icache.h:31: error: making ‘PHY_MEM_PAGES’ static
+make[1]: *** [dbg_main.o] Error 1
+make[1]: Leaving directory `/home/xuxin/study/bochs/bx_debug&#39;
+make: *** [bx_debug/libdebug.a] Error 2</code></pre>
+<p>对关键字 ‘PHY_MEM_PAGES’ 进行搜索，基本就是毫无信息，一筹莫展，遂记录，然后睡觉</p>
+<p>不行，越想越气，起床继续写</p>
+<p>查资料根据</p>
+<blockquote>
+<p>ISO C++ forbids initialization of member</p>
+</blockquote>
+<p>怀疑是gcc/c++版本太低，遂找centos6的升级，因为centos默认最高版本只有4.4.7，由于位的bochs版本是2.6.10的，所以可能不兼容，遂想办法升级gcc版本</p>
+<p>根据文章 <a href="https://www.vpser.net/manage/centos-6-upgrade-gcc.html" target="_blank" rel="noopener">https://www.vpser.net/manage/centos-6-upgrade-gcc.html</a> 进行更新，然后make，大功告成。。。。我真是惊呆了。。。</p>
+<p>如果新学这个东西的人还是别用centos6了，毕竟8都已经出来了，用新的比较好。。。</p>
+<p>编译过程中确实出现了缺少文件，此处备用，用于以后以防万一还得再打一遍。。。</p>
+<pre><code class="bash">cp misc/bximage.cpp misc/bximage.cc
+cp iodev/hdimage/hdimage.cpp iodev/hdimage/hdimage.cc
+cp iodev/hdimage/vmware3.cpp iodev/hdimage/vmware3.cc
+cp iodev/hdimage/vmware4.cpp iodev/hdimage/vmware4.cc
+cp iodev/hdimage/vpc-img.cpp iodev/hdimage/vpc-img.cc
+cp iodev/hdimage/vbox.cpp iodev/hdimage/vbox.cc</code></pre>
+<p>然后编译成功</p>
+<p>哈哈哈哈哈，不愧是我（臭屁）</p>
+<h2 id="2019-03-02-其实是三月三号清晨"><a href="#2019-03-02-其实是三月三号清晨" class="headerlink" title="2019/03/02(其实是三月三号清晨)"></a>2019/03/02(其实是三月三号清晨)</h2><p>失眠，反反复复从12点床上晃到6点没睡着，遂起来学习</p>
+<p>尝试打开虚拟机失败，启动不起来，决定重新安装虚拟机（sad）</p>
+<p>有了前车之鉴决定装centos 8 配合最新点软件包，希望一切顺利</p>
+<p>然而失败了，报错</p>
+<blockquote>
+<p>Bochs is not compiled with lowlevel sound support</p>
+</blockquote>
+<p>可能需要再研究一下配置或者bochsrc，睡啦</p>
 
-              </div>
-            </div>
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+            
           </div>
         </div>
       </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+      <br><br>
+      
+      
+  <div id="vcomments" style="width: 90%; margin: 0 auto;"></div>
+  <script defer src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script defer src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+  <script>
+    var notify = 'true' === true;
+    var verify = 'true' === true;
+    var oldLoad = window.onload;
+    window.onload = function () {
+      new Valine({
+        el: '#vcomments',
+        notify: notify,
+        verify: verify,
+        app_id: "p8dc5OENn5OvoFlhtKE0lxw5-gzGzoHsz",
+        app_key: "IDA8njIaNUgIBpQtP59VhQ0o",
+        placeholder: "说点什么",
+        avatar: "retro",
+        meta: ['nick', 'mail', 'link'],
+        pageSize: "10",
+      });
+      oldLoad && oldLoad();
+    };
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://valine.js.org" target="_blank" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
+
+
+    
+  </div>
+</div>
+
     
   </main>
 
@@ -272,6 +366,11 @@
 
 
 
+  
+    <script src="/lib/tocbot/tocbot.min.js" ></script>
+  
+  <script src="/js/post.js" ></script>
+
 
 
   <script src="/lib/smooth-scroll/smooth-scroll.min.js" ></script>
@@ -312,7 +411,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "归档&nbsp;",
+        "《一个64操作系统的设计与实现》阅读笔记（一）&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

@@ -4,6 +4,57 @@
   
   
   <entry>
+    <title>函数防抖</title>
+    <link href="undefined2020/07/07/debounce/"/>
+    <url>2020/07/07/debounce/</url>
+    
+    <content type="html"><![CDATA[<h1 id="函数防抖"><a href="#函数防抖" class="headerlink" title="函数防抖"></a>函数防抖</h1><p>短时间内多次触发同一事件，只执行一次</p><h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><p>只执行最后一次，或者只执行最开始的一次，中间的不执行。</p><h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><pre><code class="javascript">// 合成版/**   * @desc 函数防抖   * @param func 目标函数   * @param wait 延迟执行毫秒数   * @param immediate true - 立即执行， false - 延迟执行   */function debounce(func, wait, immediate) {    let timer;    return function() {        let context = this,            args = arguments;        if (timer) clearTimeout(timer);        if (immediate) {            let callNow = !timer;            timer = setTimeout(() =&gt; {                timer = null;            }, wait);            if (callNow) func.apply(context, args);        } else {            timer  = setTimeout(() =&gt; {                func.apply(context, args)            }, wait)        }    }}</code></pre>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>编程常见方式</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>函数节流</title>
+    <link href="undefined2020/07/07/throttle/"/>
+    <url>2020/07/07/throttle/</url>
+    
+    <content type="html"><![CDATA[<h1 id="函数节流"><a href="#函数节流" class="headerlink" title="函数节流"></a>函数节流</h1><p>函数节流是主要取消一段时间内的多次调用</p><h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><p>在一定时间内，比如一秒内只调用一次，然后下一秒内再调用一次</p><h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>具体的实现方式，其实是使用的一个变量作为开关，以控制节流的是否处罚</p><pre><code class="javascript">// 时间戳版function throttle(func, wait) {    let previous = 0;        return function() {        let now = Date.now();        let context = this;        let args = arguments;        if (now - previous &gt; wait) {            func.apply(context, args);            previous = now;        }    }}content.onmousemove = throttle(count,1000);</code></pre><p>这段代码<a href="https://www.cnblogs.com/cc-freiheit/p/10827372.html" target="_blank" rel="noopener">参考来源</a></p><p>第一个参数为方法，为节流时调用的函数</p><p>第二个参数为防抖时间，用于防抖的延迟时间</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>编程常见方式</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>《一个64操作系统的设计与实现》阅读笔记（一）</title>
+    <link href="undefined2020/03/03/system-x64/"/>
+    <url>2020/03/03/system-x64/</url>
+    
+    <content type="html"><![CDATA[<h1 id="第二章"><a href="#第二章" class="headerlink" title="第二章"></a>第二章</h1><h2 id="2019-03-02"><a href="#2019-03-02" class="headerlink" title="2019/03/02"></a>2019/03/02</h2><p>bochs是真的让人摸不着头脑。。按照书中的</p><blockquote><p>./configure –with-x11 –with-wx –enable-debugger –enable-disasm –enable-all-optimizations –enable-readline –enable-long-phy-address –enable-x86-64 –enable-smp –enable-cpu-level=6 –enable-large-ramfile –enable-ltdl-install –enable-idle-hack –enable-plugins –enable-a20-pin –enable-repeat-speedups –enable-fast-function-calls –enable-handlers-chaining –enable-trace-linking –enable-configurable-msrs –enable-show-ips –enable-cpp –enable-debugger-gui –enable-iodebug –enable-logging –enable-assert-checks –enable-fpu –enable-vmx=2 –enable-svm –enable-3dnow –enable-alignment-check –enable-monitor-mwait –enable-avx –enable-evex –enable-x86-debugger –enable-pci –enable-usb –enable-voodoo</p></blockquote><p>进行了配置以后，使用make install 进行编译的时候失败了，报了一个</p><pre><code class="bash">make[1]: Entering directory `/home/xuxin/study/bochs/iodev/usb&#39;make[1]: `libusb.a&#39; is up to date.make[1]: Leaving directory `/home/xuxin/study/bochs/iodev/usb&#39;echo donedonecd bx_debug &amp;&amp; \    make  libdebug.amake[1]: Entering directory `/home/xuxin/study/bochs/bx_debug&#39;g++ -c -I.. -I./.. -I../instrument/stubs -I./../instrument/stubs -I. -I./. -g -O2 -D_FILE_OFFSET_BITS=64 -D_LARGE_FILES -pthread   dbg_main.cpp -o dbg_main.oIn file included from ../cpu/cpu.h:648,                 from dbg_main.cpp:28:../cpu/icache.h:31: error: ISO C++ forbids initialization of member ‘PHY_MEM_PAGES’../cpu/icache.h:31: error: making ‘PHY_MEM_PAGES’ staticmake[1]: *** [dbg_main.o] Error 1make[1]: Leaving directory `/home/xuxin/study/bochs/bx_debug&#39;make: *** [bx_debug/libdebug.a] Error 2</code></pre><p>对关键字 ‘PHY_MEM_PAGES’ 进行搜索，基本就是毫无信息，一筹莫展，遂记录，然后睡觉</p><p>不行，越想越气，起床继续写</p><p>查资料根据</p><blockquote><p>ISO C++ forbids initialization of member</p></blockquote><p>怀疑是gcc/c++版本太低，遂找centos6的升级，因为centos默认最高版本只有4.4.7，由于位的bochs版本是2.6.10的，所以可能不兼容，遂想办法升级gcc版本</p><p>根据文章 <a href="https://www.vpser.net/manage/centos-6-upgrade-gcc.html" target="_blank" rel="noopener">https://www.vpser.net/manage/centos-6-upgrade-gcc.html</a> 进行更新，然后make，大功告成。。。。我真是惊呆了。。。</p><p>如果新学这个东西的人还是别用centos6了，毕竟8都已经出来了，用新的比较好。。。</p><p>编译过程中确实出现了缺少文件，此处备用，用于以后以防万一还得再打一遍。。。</p><pre><code class="bash">cp misc/bximage.cpp misc/bximage.cccp iodev/hdimage/hdimage.cpp iodev/hdimage/hdimage.cccp iodev/hdimage/vmware3.cpp iodev/hdimage/vmware3.cccp iodev/hdimage/vmware4.cpp iodev/hdimage/vmware4.cccp iodev/hdimage/vpc-img.cpp iodev/hdimage/vpc-img.cccp iodev/hdimage/vbox.cpp iodev/hdimage/vbox.cc</code></pre><p>然后编译成功</p><p>哈哈哈哈哈，不愧是我（臭屁）</p><h2 id="2019-03-02-其实是三月三号清晨"><a href="#2019-03-02-其实是三月三号清晨" class="headerlink" title="2019/03/02(其实是三月三号清晨)"></a>2019/03/02(其实是三月三号清晨)</h2><p>失眠，反反复复从12点床上晃到6点没睡着，遂起来学习</p><p>尝试打开虚拟机失败，启动不起来，决定重新安装虚拟机（sad）</p><p>有了前车之鉴决定装centos 8 配合最新点软件包，希望一切顺利</p><p>然而失败了，报错</p><blockquote><p>Bochs is not compiled with lowlevel sound support</p></blockquote><p>可能需要再研究一下配置或者bochsrc，睡啦</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>网页端通过url直接打开pc版钉钉</title>
     <link href="undefined2020/01/20/dingding-pc/"/>
     <url>2020/01/20/dingding-pc/</url>

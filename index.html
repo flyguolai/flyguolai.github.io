@@ -150,6 +150,134 @@
     
     
     <div class="col-12 col-md-8 m-auto">
+      <a href="/2020/07/07/debounce/">
+        <p class="h4 index-header">函数防抖</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">函数防抖短时间内多次触发同一事件，只执行一次
+目的只执行最后一次，或者只执行最开始的一次，中间的不执行。
+实现// 合成版
+/**
+   * @desc 函数防抖
+   * @param func 目标函数
+   * @param wait 延迟执行毫秒数
+   * @param immediate true - 立即执行， false - 延迟执行
+   */
+function debounce(func, wait, immediate) {
+    let timer;
+    return function() {
+        let context = this,
+            args = arguments;
+
+        if (timer) clearTimeout(timer);
+        if (immediate) {
+            let callNow = !timer;
+            timer = setTimeout(() =&gt; {
+                timer = null;
+     </div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-07-07&nbsp;&nbsp;
+        
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/%E7%BC%96%E7%A8%8B%E5%B8%B8%E8%A7%81%E6%96%B9%E5%BC%8F">编程常见方式</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2020/07/07/throttle/">
+        <p class="h4 index-header">函数节流</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">函数节流函数节流是主要取消一段时间内的多次调用
+目的在一定时间内，比如一秒内只调用一次，然后下一秒内再调用一次
+实现具体的实现方式，其实是使用的一个变量作为开关，以控制节流的是否处罚
+// 时间戳版
+function throttle(func, wait) {
+    let previous = 0;
+        return function() {
+        let now = Date.now();
+        let context = this;
+        let args = arguments;
+        if (now - previous &gt; wait) {
+            func.apply(context, args);
+            previous = now;
+        }
+    }
+}
+
+content.onmousemove = throttle(count,1000);
+这段代码参考来源
+第一个参数为方法，为节流时调用的函数
+第二个参数为防抖时间，用于防抖的延迟时间
+</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-07-07&nbsp;&nbsp;
+        
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/%E7%BC%96%E7%A8%8B%E5%B8%B8%E8%A7%81%E6%96%B9%E5%BC%8F">编程常见方式</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2020/03/03/system-x64/">
+        <p class="h4 index-header">《一个64操作系统的设计与实现》阅读笔记（一）</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">第二章2019/03/02bochs是真的让人摸不着头脑。。按照书中的
+
+./configure –with-x11 –with-wx –enable-debugger –enable-disasm –enable-all-optimizations –enable-readline –enable-long-phy-address –enable-x86-64 –enable-smp –enable-cpu-level=6 –enable-large-ramfile –enable-ltdl-install –enable-idle-hack –enable-plugins –enable-a20-pin –enable-repeat-speedups –enable-fast-function-calls –enable-handlers-chaining –enable-trace-linking –enable-configurable-msrs –enable-show-ips –enable-cpp –enable-debugger-gui –enable-iodebug </div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-03&nbsp;&nbsp;
+        
+        
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+    <div class="col-12 col-md-8 m-auto">
       <a href="/2020/01/20/dingding-pc/">
         <p class="h4 index-header">网页端通过url直接打开pc版钉钉</p>
         
@@ -431,39 +559,19 @@ import android.hardware.display.Display</div>
     </div>
   </div>
 
-  <div class="row mb-4 mx-auto">
-    
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2019/11/19/hexo/">
-        <p class="h4 index-header">使用hexo与git page快速创建一个属于你自己的博客系统</p>
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">其实很久之前就想弄一个自己的博客系统用来记录自己coding过程中碰到的那么多坑，可惜拖延症晚期，迟迟没有付诸行动
-2019年双11弄了台百度云的机器（虽然最后没用上），又起了歹念，一通搜索，在v2ex上发现大家都说搭博客hexo就够了，于是就开始了折腾
-hexohexo 本质上是一个快速搭建博客的脚手架，其最大用处是快速搭建一个博客模版，内容使用markdown进行书写，然后通过一系列的命令可以直接转换为html文本，最后直接部署到站点上。
-从创建到发布拥有一套相对完善的工具链
-安装前提安装 Hexo 相当简单，只需要先安装下列应用程序即可：
-Node.js (Node.js 版本需不低于 8.6，建议使用 Node.js 10.0 及以上版本)Git如果您的电脑中已经安装上述必备程序，那么恭喜您！你可以直接前往 安装 Hexo 步骤。
-由于偷懒，下面的教程一般都是指向的外域的教程，以后再写详细点（希望会记得。。）
-安装Node.js在大部分的情况下，无条件推荐使用nvm进行node.js的安装而不是直接安装node.js(最大的好处就是可以动态的切换依赖而非每次都去安装不通版本的n</div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2019-11-19&nbsp;&nbsp;
-        
-        
-        
-      </div>
-    </div>
-  </div>
 
 
+  <nav aria-label="index posts navigation">
+    <span class="pagination pg-blue justify-content-center mt-5" id="pagination">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fas fa-angle-double-right"></i></a>
+    </span>
+  </nav>
+  
+  <script>
+    for (ele of document.getElementById("pagination").getElementsByClassName("page-number")) {
+      ele.href += '#board';
+    }
+  </script>
 
 
 
