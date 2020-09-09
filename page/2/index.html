@@ -150,6 +150,52 @@
     
     
     <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/11/19/androidScreen/">
+        <p class="h4 index-header">安卓获取屏幕以及获得像素点</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">闲人屁事多由于一些不可告人的需求，所以开始寻找各种可以实现安卓实时获得屏幕上某个像素点的功能
+首先，将需求进行拆解，分别为
+1、获得屏幕2、获得屏幕上一个像素点
+获得屏幕获得屏幕分为比较多种的方式，在以前大致分为
+
+adb screencap 获取当前屏幕
+linux 底层 通过frameBuffer获得屏幕信息我没试过我也不知道好不好用参考1参考2
+通过 MediaProjection 屏幕录制获得图像参考
+
+我使用的是 MediaProject 的方法，这里重点实现了这个方法由于我的需求是需要处处调用的，所以将获取像素点的一系列方法封装在一个单例之中，以达到一处声明，处处调用
+package com.tools.automator.core
+
+import android.graphics.Bitmap
+import android.app.ActivityManager
+import android.content.Context
+import android.graphics.PixelFormat
+import android.hardware.display.Display</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-11-19&nbsp;&nbsp;
+        
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/android">android</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+    <div class="col-12 col-md-8 m-auto">
       <a href="/2019/11/19/hexo/">
         <p class="h4 index-header">使用hexo与git page快速创建一个属于你自己的博客系统</p>
         
