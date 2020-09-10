@@ -193,7 +193,7 @@
 <p><a href="https://www.khronos.org/registry/webgl/extensions/rejected/WEBGL_shared_resources/" target="_blank" rel="noopener">https://www.khronos.org/registry/webgl/extensions/rejected/WEBGL_shared_resources/</a></p>
 <p>看到标题里带了rejected，心里咯噔了一下</p>
 <p>仔细阅读，阅读到最后</p>
-<pre><code>Revision 1, 2012/02/06
+<pre><code class="text">Revision 1, 2012/02/06
 
 Initial revision.
 
@@ -207,19 +207,20 @@ Added NoInterfaceObject extended attribute to extension interface and WebGLShare
 
 Revision 4, 2018/05/02
 
-Rejected after discussion on public_webgl and no strong objections. At this point in the WebGL API&#39;s development it is not profitable to invest the time to implement this extension. Alternatives: CanvasRenderingContext2D.drawImage taking a WebGL-rendered canvas as argument, or using OffscreenCanvas.transferToImageBitmap with a WebGL-rendered canvas, combined with ImageBitmapRenderingContext.transferFromImageBitmap.</code></pre><p>于<code>2012</code>年提出的草案，但是在<code>2018</code>年驳回了</p>
+Rejected after discussion on public_webgl and no strong objections. At this point in the WebGL API&#39;s development it is not profitable to invest the time to implement this extension. Alternatives: CanvasRenderingContext2D.drawImage taking a WebGL-rendered canvas as argument, or using OffscreenCanvas.transferToImageBitmap with a WebGL-rendered canvas, combined with ImageBitmapRenderingContext.transferFromImageBitmap.</code></pre>
+<p>于<code>2012</code>年提出的草案，但是在<code>2018</code>年驳回了</p>
 <p>当然khronos给的理由是这个东西价值不大，我们没那么多人投到这个东西里开发，如果要使用的话可以用类似于drawImage的形式去实现（翻译一下：我们没空搞这个，这个性价比太低了，你们可以用离屏canvas画2d的行为替代3d数据共享的行为，先将就用这个吧）</p>
 <p>最后结果是好的，使用他们提出的2d去读3d显示的画面效率很可以，毕竟调研的目的是能否公用一个context来实现渲染，最后实验通过了</p>
 <h3 id="发现了效率问题"><a href="#发现了效率问题" class="headerlink" title="发现了效率问题"></a>发现了效率问题</h3><p>虽然在直接使用的过程中发现无法正常将一张canvas上的东西画到另一张上去，但是在一通stackoverflow后，得到了答案<a href="https://stackoverflow.com/questions/31710748/todataurl-of-webgl-canvas-returning-transparent-image" target="_blank" rel="noopener">https://stackoverflow.com/questions/31710748/todataurl-of-webgl-canvas-returning-transparent-image</a></p>
-<p>在第一次getContext时，配置项加入{preserveDrawingBuffer:true}</p>
+<p>在第一次getContext时，配置项加入<code>{preserveDrawingBuffer:true}</code></p>
 <p>需要对上一次绘制的结果进行preserve</p>
 <p>但是个人觉得这个api并不友好，虽然是getContext，其实本质上也对context进行了一次初始化，并且之后如果和这次初始化的类型不一样只是会返回null，并没有很好的语义化，用起来特别别扭</p>
-<p>最后尝试使用offscreenCanvas，它本身提供了drawBitMap的api，相对于显式的canvas友好不少</p>
-<p>奇葩的是offscreenCanvas的更新需要调用它的toBitmap接口才好……不然它都是惰性的更新视图……黑一会更新一下黑一会更新一下……</p>
+<p>最后尝试使用<code>offscreenCanvas</code>，它本身提供了drawBitMap的api，相对于显式的canvas友好不少</p>
+<p>奇葩的是<code>offscreenCanvas</code>的更新需要调用它的toBitmap接口才好……不然它都是惰性的更新视图……黑一会更新一下黑一会更新一下……</p>
 <h2 id="2020-8-24-更新"><a href="#2020-8-24-更新" class="headerlink" title="2020/8/24 更新"></a>2020/8/24 更新</h2><p>还是不行，offscreen的操作明显是有惰性绘制操作的，视图更新不及时，同时兼容性(chrome 69,safari 全红)实在是太差了……</p>
 <p>最后在通过js生成一个canvas然后直接draw到页面上……效率挺高的，完美</p>
 <h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3><p>使用同一个context的形式可行，通过生成bitmap的形式效率在多个cnavas同屏幕显示效果也非常好（这行划掉）</p>
-<p>还是通过显式的canvas来更新canvas吧，offscreenCanvas不太行……</p>
+<p>还是通过显式的canvas来更新canvas吧，<code>offscreenCanvas</code>不太行……</p>
 <h2 id="2020-9-9-更新"><a href="#2020-9-9-更新" class="headerlink" title="2020/9/9 更新"></a>2020/9/9 更新</h2><p>共享context有背景色无法正常显示问题，故还是直接渲染到页面上……</p>
 
             <hr>
