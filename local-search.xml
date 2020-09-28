@@ -4,6 +4,19 @@
   
   
   <entry>
+    <title>阿里云oss杂七杂八</title>
+    <link href="undefined2020/09/28/oss-origin/"/>
+    <url>2020/09/28/oss-origin/</url>
+    
+    <content type="html"><![CDATA[<h1 id="oss请求头设置"><a href="#oss请求头设置" class="headerlink" title="oss请求头设置"></a>oss请求头设置</h1><p>在“来源”字段，设置来源网址。注意一定要加http:// 只写ip或域名不行。</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>service-interceptor-failed</title>
     <link href="undefined2020/09/16/service-interceptor-failed/"/>
     <url>2020/09/16/service-interceptor-failed/</url>
