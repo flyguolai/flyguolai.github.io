@@ -4,6 +4,19 @@
   
   
   <entry>
+    <title>使用docker搭建jenkins</title>
+    <link href="undefined2020/09/30/jenkins-create/"/>
+    <url>2020/09/30/jenkins-create/</url>
+    
+    <content type="html"><![CDATA[<h2 id="外部依赖教程"><a href="#外部依赖教程" class="headerlink" title="外部依赖教程"></a><a href="https://www.jianshu.com/p/12c9a9654f83" target="_blank" rel="noopener">外部依赖教程</a></h2><h2 id="docker出现容器重复CONFICT"><a href="#docker出现容器重复CONFICT" class="headerlink" title="docker出现容器重复CONFICT"></a>docker出现容器重复CONFICT</h2><pre><code class="bash">docker ps -a 查看是否有停用的`docker`docker stop `[CONTAINER_ID]`查看`id`docker rm `[CONTAINER_ID]`</code></pre><h2 id="一不小心把我admin账号的权限给干掉了"><a href="#一不小心把我admin账号的权限给干掉了" class="headerlink" title="一不小心把我admin账号的权限给干掉了"></a>一不小心把我admin账号的权限给干掉了</h2><p>修改JENKINS_HOME下的<code>config.xml</code></p><p>将useSecurity节点修改为 <code>&lt;useSecurity&gt;false&lt;/useSecurity&gt;</code>但是在docker环境下没有vi咋办呢</p><pre><code class="bash">sudo docker cp xxxx:/etc/mysql/my.cnf /home/tom/sudo docker cp  /home/tom/my.cnf  xxxx:/etc/mysql/</code></pre><h2 id="权限"><a href="#权限" class="headerlink" title="权限"></a>权限</h2><p><code>rolebase-plugin</code> 先配置角色，再配置角色组</p><h2 id="数据持久化"><a href="#数据持久化" class="headerlink" title="数据持久化"></a>数据持久化</h2><p><code>docker</code>里的<code>jenkins</code>配置要通过<code>volumn</code>挂载到外部，给予外部使用</p><p>启动项修改为</p><p><code>-v jenkins_data:/var/jenkins_home</code></p><p>完整的示例</p><pre><code class="bash">docker run -d --name jenkins --privileged=true -p 8081:8080 -p 8090:8090 -v jenkins_data:/var/jenkins_home jenkins/jenkins:lts</code></pre><pre><code class="bash">--name jenkins  这个docker的别名叫jenkins-p 8081:8080    8081是外部端口号，8080是内部端口号-v jenkins_data:/var/jenkins_home   volume挂载处，volume在/var/lib/docker/volumes</code></pre>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>阿里云oss杂七杂八</title>
     <link href="undefined2020/09/28/oss-origin/"/>
     <url>2020/09/28/oss-origin/</url>
