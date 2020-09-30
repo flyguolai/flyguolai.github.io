@@ -136,7 +136,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    214 字
+                    285 字
                   </span>&nbsp;
                 
 
@@ -196,6 +196,10 @@ sudo docker cp  /home/tom/my.cnf  xxxx:/etc/mysql/</code></pre>
 <pre><code class="bash">--name jenkins  这个docker的别名叫jenkins
 -p 8081:8080    8081是外部端口号，8080是内部端口号
 -v jenkins_data:/var/jenkins_home   volume挂载处，volume在/var/lib/docker/volumes</code></pre>
+<h2 id="配置拉去文件的权限"><a href="#配置拉去文件的权限" class="headerlink" title="配置拉去文件的权限"></a>配置拉去文件的权限</h2><p>https拉git项目默认就算配了ssh_key也没卵用，最方便的方法是在前面加上账号密码</p>
+<p><a href="https://username:passworld@giturl.com" target="_blank" rel="noopener">https://username:passworld@giturl.com</a></p>
+<h2 id="jenkins定时自动构建"><a href="#jenkins定时自动构建" class="headerlink" title="jenkins定时自动构建"></a>jenkins定时自动构建</h2><p>H 8,10,12,14,16 * * *  在8,10,12,14,16的时候构建</p>
+<p>关键词cron</p>
 
             <hr>
           </div>
