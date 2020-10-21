@@ -150,6 +150,62 @@
     
     
     <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/12/30/iedebugrun/">
+        <p class="h4 index-header">记一个ie下特有的代码情况</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">起因起因是接到了一个bug，说是代码在ie下运行，无法正常运行。当时想了一下，那不是理所当然的嘛，没有接babel-polyfill，所以打不开是正常的一踏糊涂，代码里还有不少Promise相关的代码。
+结果出现了反转，他们说打开了f12（控制台）以后，跟我说界面可以正常加载出来了。我当时就？？？？？？？了
+
+然后我喊上了我的同事，一起来围观ie11下的神秘问题。
+然后他表示
+
+这是我工作以来碰到的最神秘的bug
+
+
+好了，这下懵逼的人又多了一个
+调查既然出现了这么有趣的问题，那怎么可以放过它呢。。
+通过在google上搜索关键字 ie11 不开 调试器 查到了一个很相似的网页内容
+
+救星啊！！曙光啊！！女神啊！！
+然后点了进去
+
+女神他门坏啦！！！女神他穿上了坦克装甲！！！
+不过幸好的是，我们找到了关键字，所以我们继续按照这个页面的关键字进行检索，他已经给出了大方向
+我们将关键字修改为 
+
+ie11 调试器 除非启动
+
+果不其然，正确答案出现了(按F进入坦克)
+正确答案
+https://xbuba.com/questions/44036862
+
+在这篇文章中，将这个问题的关键描绘了出</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-12-30&nbsp;&nbsp;
+        
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/%E5%89%8D%E7%AB%AF">前端</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+    <div class="col-12 col-md-8 m-auto">
       <a href="/2019/12/12/regex/">
         <p class="h4 index-header">regex零宽断言</p>
         
