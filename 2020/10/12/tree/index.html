@@ -16,7 +16,7 @@
   <meta name="description" content="">
   <meta name="author" content="flyguolai">
   <meta name="keywords" content="">
-  <title>归档 ~ 大树洞</title>
+  <title>树结构练习题 ~ 大树洞</title>
 
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
 <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
@@ -52,7 +52,7 @@
 
 
 <body>
-  <header style="height: 80vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -123,6 +123,41 @@
             </span>
 
             
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  星期一, 十月 12日 2020, 1:48 下午
+                </p>
+              
+
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    356 字
+                  </span>&nbsp;
+                
+
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      1 分钟
+                  </span>&nbsp;
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
+            
           </div>
 
           
@@ -133,35 +168,142 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5 z-depth-3" id="board">
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">共计 19 篇文章</p>
-  <hr>
-  
-    
       
-      <p class="h5">2020</p>
-    
-    <a href="/2020/03/03/system-x64/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">《一个64操作系统的设计与实现》阅读笔记（一）</span>
-      <span style="float: right;">03-03</span>
-    </a>
-  
-</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <h2 id="树"><a href="#树" class="headerlink" title="树"></a>树</h2><p>类似于链表，不过从链表的一对一结构变化为了一对N的结构</p>
+<h3 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h3><p>二叉树为一个根节点最多有两个叶子节点的结构</p>
+<p>二叉树的主要遍历行为为</p>
+<ul>
+<li>前序遍历</li>
+<li>中序遍历</li>
+<li>后续遍历</li>
+</ul>
+<p>其对应的结构为，左叶子节点永远在右叶子节点前面，变化的产物主要为根节点的顺序</p>
+<p>根节点在最前，为前序遍历，根节点在最后为后续遍历，根节点在中为中序遍历</p>
+<h4 id="搜索二叉树的最小差值"><a href="#搜索二叉树的最小差值" class="headerlink" title="搜索二叉树的最小差值"></a>搜索二叉树的最小差值</h4><p>思路：搜索二叉树为有序二叉树，其值在二叉树中有序排列，从小到大依次为左叶子，根节点，右叶子，所以可以直接获得其顺序，并可以确定 根-左 和 右-根 一定为正数，同时去除结构中的空叶子节点</p>
+<p>通过prev和min全局变量存储之前的计算结果</p>
+<pre><code class="javascript">/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
 
 
-              </div>
-            </div>
+let prev = null
+let min = null
+
+// 使用中序遍历
+// 中序遍历将二叉搜索树转换为有序数组，然后通过数组比较求出最小值
+var middle = function(treeNode){
+    if(treeNode){
+        middle(treeNode.left)
+        if(prev){
+            if(min){
+                min = Math.min(min,treeNode.val - prev.val)
+            }else{
+                min = treeNode.val - prev.val
+            }
+        }
+        prev = treeNode
+
+        middle(treeNode.right)
+    }
+}
+
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+var getMinimumDifference = function(root) {
+    prev = null;
+    min = null;
+    middle(root)
+    return min
+};</code></pre>
+
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+            
+              <span>
+                <i class="iconfont icon-tag"></i>
+                
+                  <a class="hover-with-bg" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a>
+                
+              </span>
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+            
           </div>
         </div>
       </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+      <br><br>
+      
+      
+  <div id="vcomments" style="width: 90%; margin: 0 auto;"></div>
+  <script defer src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script defer src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+  <script>
+    var notify = 'true' === true;
+    var verify = 'true' === true;
+    var oldLoad = window.onload;
+    window.onload = function () {
+      new Valine({
+        el: '#vcomments',
+        notify: notify,
+        verify: verify,
+        app_id: "p8dc5OENn5OvoFlhtKE0lxw5-gzGzoHsz",
+        app_key: "IDA8njIaNUgIBpQtP59VhQ0o",
+        placeholder: "说点什么",
+        avatar: "retro",
+        meta: ['nick', 'mail', 'link'],
+        pageSize: "10",
+      });
+      oldLoad && oldLoad();
+    };
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://valine.js.org" target="_blank" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
+
+
+    
+  </div>
+</div>
+
     
   </main>
 
@@ -236,6 +378,11 @@
 
 
 
+  
+    <script src="/lib/tocbot/tocbot.min.js" ></script>
+  
+  <script src="/js/post.js" ></script>
+
 
 
   <script src="/lib/smooth-scroll/smooth-scroll.min.js" ></script>
@@ -276,7 +423,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "归档&nbsp;",
+        "树结构练习题&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
