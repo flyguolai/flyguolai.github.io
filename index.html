@@ -159,15 +159,16 @@
         <div class="index-excerpt" >
           <div class="index-text mb-1">何谓前端上云将前端的静态文件全部放至云端，访问index.html时，获得所有js/css/img图片的行为走向静态存储服务器，而不是真正的后台服务器，以节省后端流量，让后端的流量尽可能的处理api而不是静态文件，提高负载能力
 图解
-internetclientbackendossindex.html和apijs/css/assets返回
-
-
 目标所有静态的文件托管至静态服务器，前端将其指引至对应的服务器，请求
 Angular 前端文件静态托管方案
 baseHerfbaseHerf的方式是在ng build时传入baseHref，使其在入口html中添加一个base标签，通过这个base href，将所有的静态资源指向到对应的服务器上
 
 但是在angular中有一个比较明显的缺点，即angular的route也会消费这个basehref，但是其本身依旧是在访问根路由的请求
-同时，在搜索angular-cli的issue时，发现很多人也有类似的问题，有个解决办法时提供一个APP_BASE_HREF的PROVIDER，使路由消费根目录路径，而文件使用base-href，但是由于这个功能有些</div>
+同时，在搜索angular-cli的issue时，发现很多人也有类似的问题，有个解决办法时提供一个APP_BASE_HREF的PROVIDER，使路由消费根目录路径，而文件使用base-href，但是由于这个功能有些hack，angular本身并没有提倡使用，所以就放弃了
+
+deployUrl
+
+deployUrl使用方法和b</div>
         </div>
       </a>
 
