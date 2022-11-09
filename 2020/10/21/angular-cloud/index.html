@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="baidu-site-verification" content="7hzkyVGzWy" />
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="description" content="">
+  <meta name="author" content="flyguolai">
+  <meta name="keywords" content="">
+  <title>记一次艰辛的angular上云 ~ 大树洞</title>
+
+  <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
+<link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
+<link rel="stylesheet" href="/lib/mdbootstrap/css/mdb.min.css"  >
+<link rel="stylesheet" href="/lib/github-markdown/github-markdown.min.css"  >
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+
+
+
+  <link rel="stylesheet" href="/lib/prettify/tomorrow-night-eighties.min.css"  >
+
+<link rel="stylesheet" href="/css/main.css"  >
+
+
+  <link rel="stylesheet" href="/lib/fancybox/jquery.fancybox.min.css"  >
+
+
+  <script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+    
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>大树洞</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">Archives</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">Categories</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">Tags</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">About</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+</nav>
+
+    <div class="view intro-2" id="background"
+         style="background: url('/img/default.png')no-repeat center center;
+           background-size: cover;
+           background-attachment: fixed;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  星期三, 十月 21日 2020, 6:00 晚上
+                </p>
+              
+
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    471 字
+                  </span>&nbsp;
+                
+
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      1 分钟
+                  </span>&nbsp;
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <h1 id="何谓前端上云"><a href="#何谓前端上云" class="headerlink" title="何谓前端上云"></a>何谓前端上云</h1><p>将前端的静态文件全部放至云端，访问index.html时，获得所有js/css/img图片的行为走向静态存储服务器，而不是真正的后台服务器，以节省后端流量，让后端的流量尽可能的处理api而不是静态文件，提高负载能力</p>
+<h1 id="图解"><a href="#图解" class="headerlink" title="图解"></a>图解</h1><div>
+<svg id="SvgjsSvg1006" width="690.5" height="508.5" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs"><defs id="SvgjsDefs1007"><pattern id="SvgjsPattern1010" x="0" y="0" width="75" height="75" patternUnits="userSpaceOnUse"><image id="SvgjsImage1011" xlink:href="https://www.processon.com/assets/images/designer/network/globe.svg" width="75" height="75" preserveAspectRatio="none" crossOrigin="anonymous" x="0" y="0"></image></pattern><pattern id="SvgjsPattern1018" x="0" y="0" width="79" height="48" patternUnits="userSpaceOnUse"><image id="SvgjsImage1019" xlink:href="https://www.processon.com/assets/images/designer/network/notebook.svg" width="79" height="48" preserveAspectRatio="none" crossOrigin="anonymous" x="0" y="0"></image></pattern><pattern id="SvgjsPattern1026" x="0" y="0" width="36" height="80" patternUnits="userSpaceOnUse"><image id="SvgjsImage1027" xlink:href="https://www.processon.com/assets/images/designer/network/server.svg" width="36" height="80" preserveAspectRatio="none" crossOrigin="anonymous" x="0" y="0"></image></pattern><pattern id="SvgjsPattern1034" x="0" y="0" width="76" height="48" patternUnits="userSpaceOnUse"><image id="SvgjsImage1035" xlink:href="https://www.processon.com/assets/images/designer/network/cloud.svg" width="76" height="48" preserveAspectRatio="none" crossOrigin="anonymous" x="0" y="0"></image></pattern><marker id="SvgjsMarker1042" markerWidth="16" markerHeight="12" refX="16" refY="6" viewBox="0 0 16 12" orient="auto" markerUnits="userSpaceOnUse" stroke-dasharray="0,0"><path id="SvgjsPath1043" d="M0,2 L14,6 L0,11 L0,2" fill="#323232" stroke="#323232" stroke-width="2"></path></marker><marker id="SvgjsMarker1046" markerWidth="16" markerHeight="12" refX="16" refY="6" viewBox="0 0 16 12" orient="auto" markerUnits="userSpaceOnUse" stroke-dasharray="0,0"><path id="SvgjsPath1047" d="M0,2 L14,6 L0,11 L0,2" fill="#323232" stroke="#323232" stroke-width="2"></path></marker><marker id="SvgjsMarker1054" markerWidth="16" markerHeight="12" refX="16" refY="6" viewBox="0 0 16 12" orient="auto" markerUnits="userSpaceOnUse" stroke-dasharray="0,0"><path id="SvgjsPath1055" d="M0,2 L14,6 L0,11 L0,2" fill="#323232" stroke="#323232" stroke-width="2"></path></marker><marker id="SvgjsMarker1062" markerWidth="16" markerHeight="12" refX="16" refY="6" viewBox="0 0 16 12" orient="auto" markerUnits="userSpaceOnUse" stroke-dasharray="0,0"><path id="SvgjsPath1063" d="M0,2 L14,6 L0,11 L0,2" fill="#323232" stroke="#323232" stroke-width="2"></path></marker><marker id="SvgjsMarker1066" markerWidth="16" markerHeight="12" refX="16" refY="6" viewBox="0 0 16 12" orient="auto" markerUnits="userSpaceOnUse" stroke-dasharray="0,0"><path id="SvgjsPath1067" d="M0,2 L14,6 L0,11 L0,2" fill="#323232" stroke="#323232" stroke-width="2"></path></marker><marker id="SvgjsMarker1070" markerWidth="16" markerHeight="12" refX="16" refY="6" viewBox="0 0 16 12" orient="auto" markerUnits="userSpaceOnUse" stroke-dasharray="0,0"><path id="SvgjsPath1071" d="M0,2 L14,6 L0,11 L0,2" fill="#323232" stroke="#323232" stroke-width="2"></path></marker></defs><g id="SvgjsG1008" transform="translate(316,211)"><path id="SvgjsPath1009" d="M 0 0L 75 0L 75 75L 0 75Z" stroke="none" fill="url(#SvgjsPattern1010)"></path><g id="SvgjsG1012"><text id="SvgjsText1013" font-family="微软雅黑" text-anchor="middle" font-size="13px" width="115px" fill="#323232" font-weight="400" align="middle" anchor="middle" family="微软雅黑" size="13px" weight="400" font-style="" opacity="1" y="80.05" transform="rotate(0)"><tspan id="SvgjsTspan1014" dy="16" x="37.5"><tspan id="SvgjsTspan1015" style="text-decoration:;">internet</tspan></tspan></text></g></g><g id="SvgjsG1016" transform="translate(25,224.5)"><path id="SvgjsPath1017" d="M 0 0L 79 0L 79 48L 0 48Z" stroke="none" fill="url(#SvgjsPattern1018)"></path><g id="SvgjsG1020"><text id="SvgjsText1021" font-family="微软雅黑" text-anchor="middle" font-size="13px" width="119px" fill="#323232" font-weight="400" align="middle" anchor="middle" family="微软雅黑" size="13px" weight="400" font-style="" opacity="1" y="53.05" transform="rotate(0)"><tspan id="SvgjsTspan1022" dy="16" x="39.5"><tspan id="SvgjsTspan1023" style="text-decoration:;">client</tspan></tspan></text></g></g><g id="SvgjsG1024" transform="translate(609.5,390.5)"><path id="SvgjsPath1025" d="M 0 0L 36 0L 36 80L 0 80Z" stroke="none" fill="url(#SvgjsPattern1026)"></path><g id="SvgjsG1028"><text id="SvgjsText1029" font-family="微软雅黑" text-anchor="middle" font-size="13px" width="76px" fill="#323232" font-weight="400" align="middle" anchor="middle" family="微软雅黑" size="13px" weight="400" font-style="" opacity="1" y="85.05" transform="rotate(0)"><tspan id="SvgjsTspan1030" dy="16" x="18"><tspan id="SvgjsTspan1031" style="text-decoration:;">backend</tspan></tspan></text></g></g><g id="SvgjsG1032" transform="translate(589.5,25)"><path id="SvgjsPath1033" d="M 0 0L 76 0L 76 48L 0 48Z" stroke="none" fill="url(#SvgjsPattern1034)"></path><g id="SvgjsG1036"><text id="SvgjsText1037" font-family="微软雅黑" text-anchor="middle" font-size="13px" width="116px" fill="#323232" font-weight="400" align="middle" anchor="middle" family="微软雅黑" size="13px" weight="400" font-style="" opacity="1" y="53.05" transform="rotate(0)"><tspan id="SvgjsTspan1038" dy="16" x="38"><tspan id="SvgjsTspan1039" style="text-decoration:;">oss</tspan></tspan></text></g></g><g id="SvgjsG1040"><path id="SvgjsPath1041" d="M104 248.5L210 248.5L210 248.5L316 248.5" stroke="#323232" stroke-width="2" fill="none" marker-end="url(#SvgjsMarker1042)"></path></g><g id="SvgjsG1044"><path id="SvgjsPath1045" d="M353.5 286L353.5 430.5L609.5 430.5" stroke="#323232" stroke-width="2" fill="none" marker-end="url(#SvgjsMarker1046)"></path><rect id="SvgjsRect1048" width="97" height="16" x="360.75" y="422.5" fill="#ffffff"></rect><text id="SvgjsText1049" font-family="微软雅黑" text-anchor="middle" font-size="13px" width="97px" fill="#323232" font-weight="400" align="top" anchor="middle" family="微软雅黑" size="13px" weight="400" font-style="" opacity="1" y="420.55" transform="rotate(0)"><tspan id="SvgjsTspan1050" dy="16" x="409.25"><tspan id="SvgjsTspan1051" style="text-decoration:;">index.html和api</tspan></tspan></text></g><g id="SvgjsG1052"><path id="SvgjsPath1053" d="M353.5 211L353.5 49L589.5 49" stroke="#323232" stroke-width="2" fill="none" marker-end="url(#SvgjsMarker1054)"></path><rect id="SvgjsRect1056" width="77" height="16" x="352" y="41" fill="#ffffff"></rect><text id="SvgjsText1057" font-family="微软雅黑" text-anchor="middle" font-size="13px" width="77px" fill="#323232" font-weight="400" align="top" anchor="middle" family="微软雅黑" size="13px" weight="400" font-style="" opacity="1" y="39.05" transform="rotate(0)"><tspan id="SvgjsTspan1058" dy="16" x="390.5"><tspan id="SvgjsTspan1059" style="text-decoration:;">js/css/assets</tspan></tspan></text></g><g id="SvgjsG1060"><path id="SvgjsPath1061" d="M627.5 73L627.5 248.5L391 248.5" stroke="#323232" stroke-width="2" fill="none" marker-end="url(#SvgjsMarker1062)"></path></g><g id="SvgjsG1064"><path id="SvgjsPath1065" d="M316 248.5L210 248.5L210 248.5L104 248.5" stroke="#323232" stroke-width="2" fill="none" marker-end="url(#SvgjsMarker1066)"></path></g><g id="SvgjsG1068"><path id="SvgjsPath1069" d="M627.5 390.5L627.5 248.5L391 248.5" stroke="#323232" stroke-width="2" fill="none" marker-end="url(#SvgjsMarker1070)"></path><rect id="SvgjsRect1072" width="26" height="16" x="567.25" y="240.50000000000003" fill="#ffffff"></rect><text id="SvgjsText1073" font-family="微软雅黑" text-anchor="middle" font-size="13px" width="26px" fill="#323232" font-weight="400" align="top" anchor="middle" family="微软雅黑" size="13px" weight="400" font-style="" opacity="1" y="238.55000000000004" transform="rotate(0)"><tspan id="SvgjsTspan1074" dy="16" x="580.25"><tspan id="SvgjsTspan1075" style="text-decoration:;">返回</tspan></tspan></text></g></svg>
+</div>
+
+<h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><p>所有静态的文件托管至静态服务器，前端将其指引至对应的服务器，请求</p>
+<h2 id="Angular-前端文件静态托管方案"><a href="#Angular-前端文件静态托管方案" class="headerlink" title="Angular 前端文件静态托管方案"></a>Angular 前端文件静态托管方案</h2><ul>
+<li>baseHerf<br><code>baseHerf</code>的方式是在<code>ng build</code>时传入<code>baseHref</code>，使其在入口html中添加一个base标签，通过这个<code>base href</code>，将所有的静态资源指向到对应的服务器上</li>
+</ul>
+<p>但是在<code>angular</code>中有一个比较明显的缺点，即<code>angular</code>的<code>route</code>也会消费这个<code>basehref</code>，但是其本身依旧是在访问根路由的请求</p>
+<p>同时，在搜索angular-cli的issue时，发现很多人也有类似的问题，有个解决办法时提供一个APP_BASE_HREF的PROVIDER，使路由消费根目录路径，而文件使用base-href，但是由于这个功能有些hack，angular本身并没有提倡使用，所以就放弃了</p>
+<ul>
+<li>deployUrl</li>
+</ul>
+<p><code>deployUrl</code>使用方法和<code>baseHref</code>的方式类似，也是在ng build时配置的一个参数</p>
+<p>其本身在添加后，会在所有生成的js/css文件前根据其<code>deployUrl</code>添加上合适的前缀，以便服务端获得真正的文件</p>
+<p>但是虽然其本身提供了这个功能，在处理css时功能依旧不是很强，只能对<code>background-image: url()</code>进行替换，而且<code>url()</code>中必须填写相对路径，不能是绝对路径</p>
+<p>同时，也不会主动去处理html中的url，所以最后只能将所有的内联backgroundImage转换为css</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>上了云是真的爽，轻松</p>
+
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+            
+              <span>
+                <i class="iconfont icon-tag"></i>
+                
+                  <a class="hover-with-bg" href="/tags/angular%20cloud">angular cloud</a>
+                
+              </span>
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+      <br><br>
+      
+      
+  <div id="vcomments" style="width: 90%; margin: 0 auto;"></div>
+  <script defer src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script defer src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+  <script>
+    var notify = 'true' === true;
+    var verify = 'true' === true;
+    var oldLoad = window.onload;
+    window.onload = function () {
+      new Valine({
+        el: '#vcomments',
+        notify: notify,
+        verify: verify,
+        app_id: "p8dc5OENn5OvoFlhtKE0lxw5-gzGzoHsz",
+        app_key: "IDA8njIaNUgIBpQtP59VhQ0o",
+        placeholder: "说点什么",
+        avatar: "retro",
+        meta: ['nick', 'mail', 'link'],
+        pageSize: "10",
+      });
+      oldLoad && oldLoad();
+    };
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://valine.js.org" target="_blank" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
+
+
+    
+  </div>
+</div>
+
+    
+  </main>
+
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    <br>
+
+    
+  
+    <!-- 不蒜子统计PV -->
+    
+    &nbsp;<span id="busuanzi_container_site_pv">总访问量 
+          <span id="busuanzi_value_site_pv"></span> 次</span>&nbsp;
+  
+  
+    <!-- 不蒜子统计UV -->
+    
+    &nbsp;<span id="busuanzi_container_site_uv">总访客数 
+            <span id="busuanzi_value_site_uv"></span> 人</span>&nbsp;
+  
+  <br>
+
+
+
+    
+
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="/lib/jquery/jquery.min.js" ></script>
+<script src="/lib/popper/popper.min.js" ></script>
+<script src="/lib/bootstrap/js/bootstrap.min.js" ></script>
+<script src="/lib/mdbootstrap/js/mdb.min.js" ></script>
+<script src="/js/main.js" ></script>
+
+
+  <script src="/js/lazyload.js" ></script>
+
+
+
+  
+    <script src="/lib/tocbot/tocbot.min.js" ></script>
+  
+  <script src="/js/post.js" ></script>
+
+
+
+  <script src="/lib/smooth-scroll/smooth-scroll.min.js" ></script>
+
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+<!-- Plugins -->
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+  <script src="/lib/prettify/prettify.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
+  </script>
+
+
+
+  <script src="/lib/typed/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "记一次艰辛的angular上云&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script src="/lib/anchor/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "false",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script src="/lib/fancybox/jquery.fancybox.min.js" ></script>
+  <script>
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
+      function () {
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+</body>
+</html>
