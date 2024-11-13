@@ -4,13 +4,19 @@
   
   
   <entry>
-    <title>docker-clash</title>
+    <title>网页端通过url直接打开pc版钉钉</title>
     <link href="undefined2024/11/14/docker-clash/"/>
     <url>2024/11/14/docker-clash/</url>
     
     <content type="html"><![CDATA[<h2 id="自用的命令"><a href="#自用的命令" class="headerlink" title="自用的命令"></a>自用的命令</h2><h3 id="docker-clash"><a href="#docker-clash" class="headerlink" title="docker clash"></a>docker clash</h3><pre><code class="bash">    docker run -d --name clash --log-opt max-size=1m --network host -v $(pwd)/clash-config:/root/.config/clash -p 7890:7890 dreamacro/clash</code></pre><h3 id="docker-代理"><a href="#docker-代理" class="headerlink" title="docker 代理"></a>docker 代理</h3><pre><code class="bash"># /etc/systemd/system/docker.service.d/http-proxy.conf[Service]Environment=&quot;HTTP_PROXY=192.168.0.xxx:7890&quot;Environment=&quot;HTTPS_PROXY=192.168.0.xxx:7890&quot;Environment=&quot;NO_PROXY=localhost,127.0.0.1&quot;</code></pre>]]></content>
     
     
+    
+    <tags>
+      
+      <tag>前端</tag>
+      
+    </tags>
     
   </entry>
   
